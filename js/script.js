@@ -458,10 +458,163 @@ formPesanan.innerHTML = `
             <div id="ringkasan-checkout"></div>
 
             <button type="submit" class="btn btn-primary">
-                Kirim Pesanan via WhatsApp
+                Buat Pesanan
             </button>
         </form>
     </div>
 `;
 
 document.body.appendChild(formPesanan);
+
+
+/* =================================
+   16. BUKA FORMULIR PEMESANAN
+================================= */
+
+document.getElementById("pesan-sekarang")
+    .addEventListener("click", function() {
+
+        if (keranjang.length === 0) {
+            tampilkanToast(
+                "Keranjang masih kosong",
+                "Tambahkan roti terlebih dahulu."
+            );
+            return;
+        }
+
+        // Tampilkan ringkasan pesanan
+        const total = keranjang.reduce(function(jumlah, item) {
+            return jumlah + item.harga * item.jumlah;
+        }, 0);
+
+        document.getElementById("ringkasan-checkout").innerHTML = `
+            <h3>Ringkasan Pesanan</h3>
+            <p>Jumlah jenis produk: ${keranjang.length}</p>
+            <strong>Total: ${formatRupiah(total)}</strong>
+        `;
+
+        formPesanan.style.display = "flex";
+    });
+
+
+/* =================================
+   17. TUTUP FORMULIR
+================================= */
+
+document.getElementById("tutup-checkout")
+    .addEventListener("click", function() {
+        formPesanan.style.display = "none";
+    });
+
+
+/* Tutup formulir jika area luar diklik */
+formPesanan.addEventListener("click", function(event) {
+    if (event.target === formPesanan) {
+        formPesanan.style.display = "none";
+    }
+});
+
+
+/* =================================
+   18. SIMPAN PESANAN DI BROWSER
+================================= */
+
+document.getElementById("checkout-form")
+    .addEventListener("submit", function(event) {
+        event.preventDefault();
+
+        if (keranjang.length === 0) {
+            tampilkanToast(
+                "Keranjang kosong",
+                "Silakan pilih produk terlebih dahulu."
+            );
+            formPesanan.style.display = "none";
+            return;
+        }
+
+        const nama = document.getElementById("nama-pelanggan")
+            .value.trim();
+
+        const nomorHP = document.getElementById("nomor-hp")
+            .value.trim();
+
+        const alamat = document.getElementById("alamat-pelanggan")
+            .value.trim();
+
+        const catatan = document.getElementById("catatan-pesanan")
+            .value.trim();
+
+        if (!nama || !nomorHP || !alamat) {
+            tampilkanToast(
+                "Data belum lengkap",
+                "Isi nama, nomor HP, dan alamat."
+            );
+            return;
+        }
+
+        const total = keranjang.reduce(function(jumlah, item) {
+            return jumlah + item.harga * item.jumlah;
+        }, 0);
+
+        const pesananBaru = {
+            id: "ROT-" + Date.now(),
+            tanggal: new Date().toISOString(),
+            pelanggan: {
+                nama: nama,
+                nomorHP: nomorHP,
+                alamat: alamat
+            },
+            produk: keranjang.map(function(item) {
+                return {
+                    nama: item.nama,
+                    harga: item.harga,
+                    jumlah: item.jumlah,
+                    subtotal: item.harga * item.jumlah
+                };
+            }),
+            catatan: catatan,
+            total: total,
+            status: "Menunggu konfirmasi"
+        };
+
+        try {
+            const daftarPesanan = JSON.parse(
+                localStorage.getItem("pesananRotiKita") || "[]"
+            );
+
+            daftarPesanan.push(pesananBaru);
+
+            localStorage.setItem(
+                "pesananRotiKita",
+                JSON.stringify(daftarPesanan)
+            );
+
+            // Kosongkan keranjang setelah berhasil disimpan
+            keranjang = [];
+            simpanKeranjang();
+            perbaruiJumlahKeranjang();
+            tampilkanKeranjang();
+
+            // Tutup kedua modal
+            formPesanan.style.display = "none";
+            tampilanKeranjang.style.display = "none";
+
+            // Reset formulir
+            document.getElementById("checkout-form").reset();
+
+            tampilkanToast(
+                "Pesanan berhasil dibuat!",
+                "Nomor pesanan: " + pesananBaru.id
+            );
+
+            console.log("Pesanan tersimpan:", pesananBaru);
+
+        } catch (error) {
+            console.error("Gagal menyimpan pesanan:", error);
+
+            tampilkanToast(
+                "Gagal menyimpan pesanan",
+                "Periksa penyimpanan browser dan coba lagi."
+            );
+        }
+    });

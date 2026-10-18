@@ -158,9 +158,14 @@ tampilanKeranjang.innerHTML = `
 
         <h3 id="total-belanja">Total: Rp 0</h3>
 
+        <button id="pesan-sekarang" type="button">
+            Pesan Sekarang
+        </button>
+
         <button id="kosongkan-keranjang" type="button">
             Kosongkan Keranjang
         </button>
+
     </div>
 `;
 
@@ -207,60 +212,61 @@ tampilanKeranjang.addEventListener("click", function(event) {
    11. TAMPILKAN ISI KERANJANG
 ================================= */
 
+
 function tampilkanKeranjang() {
     const isi = document.getElementById("isi-keranjang");
     const totalElement = document.getElementById("total-belanja");
+    const tombolPesan = document.getElementById("pesan-sekarang");
+    const tombolKosongkan = document.getElementById("kosongkan-keranjang");
 
     isi.innerHTML = "";
 
+    // Jika keranjang kosong
     if (keranjang.length === 0) {
         isi.textContent = "Keranjang kamu masih kosong.";
-        totalElement.textContent = "Total: Rp 0";
+
+        totalElement.style.display = "none";
+        tombolPesan.style.display = "none";
+        tombolKosongkan.style.display = "none";
+
         return;
     }
+
+    // Jika keranjang berisi produk
+    totalElement.style.display = "block";
+    tombolPesan.style.display = "block";
+    tombolKosongkan.style.display = "block";
 
     let total = 0;
 
     keranjang.forEach(function(item, index) {
         const subtotal = item.harga * item.jumlah;
-
         total += subtotal;
 
         const baris = document.createElement("div");
-
         baris.className = "cart-item";
 
         baris.innerHTML = `
-            <img src="${item.gambar}" alt="">
+            <img src="${item.gambar}" alt="${item.nama}">
 
             <div class="cart-item-info">
                 <strong>${item.nama}</strong>
-
                 <p>${formatRupiah(item.harga)}</p>
 
                 <div class="cart-controls">
-                    <button
-                        type="button"
+                    <button type="button"
                         data-aksi="kurang"
-                        data-index="${index}">
-                        −
-                    </button>
+                        data-index="${index}">−</button>
 
                     <span>${item.jumlah}</span>
 
-                    <button
-                        type="button"
+                    <button type="button"
                         data-aksi="tambah"
-                        data-index="${index}">
-                        +
-                    </button>
+                        data-index="${index}">+</button>
 
-                    <button
-                        type="button"
+                    <button type="button"
                         data-aksi="hapus"
-                        data-index="${index}">
-                        Hapus
-                    </button>
+                        data-index="${index}">Hapus</button>
                 </div>
             </div>
 
@@ -398,3 +404,64 @@ if (formPencarian) {
 ================================= */
 
 perbaruiJumlahKeranjang();
+
+
+/* FORMULIR PEMESANAN */
+
+const formPesanan = document.createElement("div");
+
+formPesanan.id = "form-pesanan";
+
+formPesanan.innerHTML = `
+    <div class="checkout-box">
+        <button id="tutup-checkout" type="button">
+            ✕ Tutup
+        </button>
+
+        <h2>Formulir Pemesanan</h2>
+        <p>Isi data berikut untuk memesan roti.</p>
+
+        <form id="checkout-form">
+            <label for="nama-pelanggan">Nama lengkap</label>
+            <input
+                type="text"
+                id="nama-pelanggan"
+                required
+                maxlength="100"
+                placeholder="Masukkan nama Anda"
+            >
+
+            <label for="nomor-hp">Nomor WhatsApp</label>
+            <input
+                type="tel"
+                id="nomor-hp"
+                required
+                maxlength="20"
+                placeholder="Contoh: 081234567890"
+            >
+
+            <label for="alamat-pelanggan">Alamat pengiriman</label>
+            <textarea
+                id="alamat-pelanggan"
+                required
+                maxlength="500"
+                placeholder="Nama jalan, nomor rumah, kota"
+            ></textarea>
+
+            <label for="catatan-pesanan">Catatan (opsional)</label>
+            <textarea
+                id="catatan-pesanan"
+                maxlength="300"
+                placeholder="Contoh: jangan terlalu manis"
+            ></textarea>
+
+            <div id="ringkasan-checkout"></div>
+
+            <button type="submit" class="btn btn-primary">
+                Kirim Pesanan via WhatsApp
+            </button>
+        </form>
+    </div>
+`;
+
+document.body.appendChild(formPesanan);

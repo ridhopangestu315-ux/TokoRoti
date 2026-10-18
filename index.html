@@ -1,0 +1,346 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>RotiKita - Roti Segar Setiap Hari</title>
+
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+    <!-- Navbar -->
+    <header class="navbar">
+        <div class="container navbar-content">
+
+            <a href="#" class="logo">
+                <span class="logo-icon"></span>
+                RotiKita
+            </a>
+
+            <nav class="nav-menu">
+                <a href="#beranda" class="active">Beranda</a>
+                <a href="#produk">Produk</a>
+                <a href="#tentang">Tentang</a>
+                <a href="#kontak">Kontak</a>
+            </nav>
+
+            <div class="nav-actions">
+                <form class="search-box" action="#produk">
+                    <input
+                        type="search"
+                        name="q"
+                        placeholder="Cari roti..."
+                        aria-label="Cari roti"
+                    >
+                    <button type="submit" aria-label="Cari">⌕</button>
+                </form>
+
+                <a href="#keranjang" class="nav-icon" aria-label="Keranjang">
+                    🛒
+                </a>
+
+                
+                <a href="#akun" class="account-icon" aria-label="Akun">
+                    <svg
+                        width="22"
+                        height="22"
+                        viewBox="0 0 24 24"
+                        fill="none"
+                        stroke="currentColor"
+                        stroke-width="1.8"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        aria-hidden="true"
+                    >
+                        <circle cx="12" cy="8" r="4"></circle>
+                        <path d="M4 21a8 8 0 0 1 16 0"></path>
+                    </svg>
+                </a>
+
+            </div>
+
+        </div>
+    </header>
+
+    <main>
+        <!-- Banner utama -->
+        <section class="hero" id="beranda">
+            <div class="container hero-content">
+
+                <div class="hero-text">
+                    <p class="eyebrow">Roti Segar Setiap Hari</p>
+
+                    <h1>Roti Segar untuk Setiap Hari</h1>
+
+                    <p class="hero-description">
+                        Roti berkualitas dengan bahan pilihan,
+                        dibuat dengan penuh cinta untuk keluarga Anda.
+                    </p>
+
+                    <a href="#produk" class="btn btn-primary">
+                        Belanja Sekarang →
+                    </a>
+                </div>
+
+                <div class="hero-image">
+                    <img
+                        src="images/banner-roti.png"
+                        alt="Aneka roti segar di dalam keranjang"
+                    >
+                </div>
+
+            </div>
+        </section>
+
+        <!-- Keunggulan toko -->
+        <section class="features">
+            <div class="container features-grid">
+
+                <div class="feature-item">
+                    <span class="feature-icon">🚚</span>
+                    <div>
+                        <h3>Pengiriman Cepat</h3>
+                        <p>Sampai ke rumah Anda</p>
+                    </div>
+                </div>
+
+                <div class="feature-item">
+                    <span class="feature-icon">🌾</span>
+                    <div>
+                        <h3>Bahan Berkualitas</h3>
+                        <p>Pilihan terbaik</p>
+                    </div>
+                </div>
+
+                <div class="feature-item">
+                    <span class="feature-icon">♥</span>
+                    <div>
+                        <h3>Roti Selalu Segar</h3>
+                        <p>Dibuat setiap hari</p>
+                    </div>
+                </div>
+
+                <div class="feature-item">
+                    <span class="feature-icon">💳</span>
+                    <div>
+                        <h3>Pembayaran Mudah</h3>
+                        <p>Transfer dan COD</p>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- Kategori produk -->
+        <section class="section container" id="kategori">
+            <div class="section-heading">
+                <div>
+                    <h2>Kategori Produk</h2>
+                    <p>Pilih roti favorit Anda</p>
+                </div>
+
+                <a href="#produk" class="text-link">Lihat Semua →</a>
+            </div>
+
+            <div class="category-grid">
+
+                <a href="#produk" class="category-card">
+                    <img
+                        src="images/roti-tawar.png"
+                        alt="Roti tawar"
+                        loading="lazy"
+                    >
+                    <h3>Roti Tawar</h3>
+                </a>
+
+                <a href="#produk" class="category-card">
+                    <img
+                        src="images/roti-manis.png"
+                        alt="Roti manis"
+                        loading="lazy"
+                    >
+                    <h3>Roti Manis</h3>
+                </a>
+
+                <a href="#produk" class="category-card">
+                    <img
+                        src="images/roti-keju.png"
+                        alt="Roti isi"
+                        loading="lazy"
+                    >
+                    <h3>Roti Isi</h3>
+                </a>
+
+                <a href="#produk" class="category-card">
+                    <img
+                        src="images/Croissant.png"
+                        alt="Aneka pastry"
+                        loading="lazy"
+                    >
+                    <h3>Pastry</h3>
+                </a>
+
+            </div>
+        </section>
+
+        <!-- Produk terlaris -->
+        <section class="section container" id="produk">
+            <div class="section-heading">
+                <div>
+                    <h2>Produk Terlaris</h2>
+                    <p>Roti favorit pelanggan kami</p>
+                </div>
+
+                <a href="#produk" class="text-link">Lihat Semua →</a>
+            </div>
+
+            <div class="product-grid">
+
+                <article class="product-card">
+                    <img
+                        src="images/roti-coklat.png"
+                        alt="Roti coklat"
+                        loading="lazy"
+                    >
+
+                    <div class="product-info">
+                        <h3>Roti Coklat</h3>
+                        <p class="price">Rp 12.000</p>
+                        <button type="button" class="btn btn-product">
+                            🛒 Tambah
+                        </button>
+                    </div>
+                </article>
+
+                <article class="product-card">
+                    <img
+                        src="images/roti-keju.png"
+                        alt="Roti keju"
+                        loading="lazy"
+                    >
+
+                    <div class="product-info">
+                        <h3>Roti Keju</h3>
+                        <p class="price">Rp 13.000</p>
+                        <button type="button" class="btn btn-product">
+                            🛒 Tambah
+                        </button>
+                    </div>
+                </article>
+
+                <article class="product-card">
+                    <img
+                        src="images/roti-tawar.png"
+                        alt="Roti tawar"
+                        loading="lazy"
+                    >
+
+                    <div class="product-info">
+                        <h3>Roti Tawar</h3>
+                        <p class="price">Rp 8.000</p>
+                        <button type="button" class="btn btn-product">
+                            🛒 Tambah
+                        </button>
+                    </div>
+                </article>
+
+                <article class="product-card">
+                    <img
+                        src="images/Croissant.png"
+                        alt="Croissant"
+                        loading="lazy"
+                    >
+
+                    <div class="product-info">
+                        <h3>Croissant</h3>
+                        <p class="price">Rp 15.000</p>
+                        <button type="button" class="btn btn-product">
+                            🛒 Tambah
+                        </button>
+                    </div>
+                </article>
+
+            </div>
+        </section>
+
+        <!-- Tentang toko -->
+        <section class="about" id="tentang">
+            <div class="container about-content">
+                <p class="eyebrow">Tentang RotiKita</p>
+
+                <h2>Kami percaya roti yang baik bisa membuat hari lebih baik.</h2>
+
+                <p>
+                    RotiKita hadir untuk menyediakan roti berkualitas
+                    dengan rasa yang selalu bisa dinikmati kapan saja.
+                </p>
+
+                <a href="#kontak" class="btn btn-light">
+                    Hubungi Kami
+                </a>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer" id="kontak">
+        <div class="container footer-grid">
+
+            <div class="footer-brand">
+                <a href="#beranda" class="logo">
+                    <span class="logo-icon">🥖</span>
+                    RotiKita
+                </a>
+                <p>Roti Segar untuk Setiap Hari</p>
+            </div>
+
+            <div>
+                <h3>Menu</h3>
+                <a href="#beranda">Beranda</a>
+                <a href="#produk">Produk</a>
+                <a href="#tentang">Tentang</a>
+                <a href="#kontak">Kontak</a>
+            </div>
+
+            <div>
+                <h3>Bantuan</h3>
+                <a href="#kontak">Cara Belanja</a>
+                <a href="#kontak">Pengiriman</a>
+                <a href="#kontak">Pembayaran</a>
+            </div>
+
+            <div>
+                <h3>Kontak Kami</h3>
+                <p>Email: info@rotikita.com</p>
+                <p>Telepon: 08xx-xxxx-xxxx</p>
+            </div>
+
+        </div>
+
+        <div class="container copyright">
+            <p>&copy; 2026 RotiKita. Semua hak dilindungi.</p>
+        </div>
+    </footer>
+</body>
+
+    <!-- Notifikasi RotiKita -->
+
+    <div id="toast" class="toast" role="status" aria-live="polite">
+        <div class="toast-icon">✓</div>
+
+        <div class="toast-content">
+            <strong id="toast-title">Berhasil!</strong>
+            <p id="toast-message">Produk ditambahkan ke keranjang.</p>
+        </div>
+
+        <button id="toast-close" class="toast-close" type="button"
+            aria-label="Tutup notifikasi">&times;</button>
+    </div>
+
+<script src="script.js"></script>
+
+    <script src="js/script.js"></script>
+
+</html>

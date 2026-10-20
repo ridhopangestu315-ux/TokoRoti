@@ -584,6 +584,33 @@ document.getElementById("checkout-form")
 
             daftarPesanan.push(pesananBaru);
 
+            
+            
+            const URL_APPS_SCRIPT = "https://script.google.com/macros/s/AKfycbwiN5fFsRcknCfaFS8lX6YhSILMvizOEof0mugYKk6H50fiSokmG6ENcsDmmKiduDON/exec";
+
+            const dataKirim = {
+                nama: pesananBaru.pelanggan.nama,
+                nomor_hp: pesananBaru.pelanggan.nomorHP,
+                alamat: pesananBaru.pelanggan.alamat,
+                produk: JSON.stringify(pesananBaru.produk),
+                total: pesananBaru.total,
+                catatan : pesananBaru.catatan
+            };
+
+            fetch(URL_APPS_SCRIPT, {
+                method: "POST",
+                mode: "no-cors",
+                headers: {
+                    "Content-Type": "text/plain;charset=utf-8"
+                },
+                body: JSON.stringify(dataKirim)
+            }).then(function() {
+                console.log("Permintaan pengiriman sudah dikirim.");
+            }).catch(function(error) {
+                console.error("Gagal mengirim permintaan:", error);
+            });
+
+
             localStorage.setItem(
                 "pesananRotiKita",
                 JSON.stringify(daftarPesanan)
